@@ -9,89 +9,80 @@
 import UIKit
 
 class StreakRankingTableViewController: UITableViewController {
+  
+    let usernames = [
+      "luhagel",
+      "jakezeal",
+      "fanisakim",
+      "ajbraus",
+      "davidkc0"
+    ]
+  
+    var streakData: [(name: String, streak: Int)] = []
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+      super.viewDidLoad()
       
-        NetworkHelper.callGithubProfile()
+      let backgroundImage = UIImage(named: "tracker_bg")
+      let backgroundView = UIImageView(image: backgroundImage)
+      self.tableView.backgroundView = backgroundView
+      self.tableView.backgroundView?.contentMode = .scaleAspectFill
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+      getStreakData(names: usernames, completion: { streakData in
+        self.streakData = streakData.sorted {$0.streak > $1.streak}
+        self.tableView.reloadData()
+      })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  
+    // MARK: Data Aquisition
+  
+    func getStreakData(names: [String], completion: @escaping ([(name: String, streak: Int)]) -> Void) {
+      var streakData: [(name: String, streak: Int)] = []
+      for name in names {
+        NetworkHelper.getCurrentStreakFor(username: name, completion: { currentStreak in
+          streakData += [(name: name, streak: currentStreak)]
+          if streakData.count == names.count {
+            completion(streakData)
+          }
+        })
+      }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+      // #warning Incomplete implementation, return the number of sections
+      return self.streakData.count
+    }
+  
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+      return 10
+    }
+  
+    // Make the background color show through
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+      let headerView = UIView()
+      headerView.backgroundColor = UIColor.clear
+      return headerView
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+      return 1
     }
-
-    /*
+  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+      let cell = tableView.dequeueReusableCell(withIdentifier: "BarChartCell", for: indexPath) as! BarChartTableViewCell
+      let currentUser = streakData[indexPath.section]
+      let barFrame = CGRect(x: 5, y: 5, width: 200, height: 20)
+      
+      let insetView = UIView(frame: CGRect(x: 10, y: 0, width: cell.contentView.frame.width - 20, height: cell.contentView.frame.height))
+      insetView.backgroundColor = UIColor(white: 1, alpha: 0.8)
+      insetView.layer.cornerRadius = 5
+      
+      let greenBarColor = UIColor(red: 30/255, green: 104/255, blue: 35/255, alpha: 0.9)
+      insetView.addSubview(BarChartBarView(frame: barFrame, color: greenBarColor, username: currentUser.name, commits: currentUser.streak))
+      
+      cell.contentView.addSubview(insetView)
+      return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

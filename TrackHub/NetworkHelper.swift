@@ -11,14 +11,15 @@ import Alamofire
 import Kanna
 
 class NetworkHelper {
-  static func callGithubProfile() {
-    Alamofire.request("https://github.com/luhagel").responseString { response in
+  static func getCurrentStreakFor(username: String, completion: @escaping (Int) -> Void) {
+    Alamofire.request("https://github.com/\(username)").responseString { response in
       print("Success: \(response.result.isSuccess)")
-      self.parseHTML(html: response.result.value!)
-    }
+      completion(self.parseHTML(html: response.result.value!))    }
   }
   
-  static func parseHTML(html: String) {
+  static func parseHTML(html: String) -> Int {
+    var commitStreak = 0
+    
     if let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8) {
       
       var commitGraph: [Int] = []
@@ -30,9 +31,8 @@ class NetworkHelper {
       
       commitGraph.popLast()
       commitGraph.popLast()
+      commitGraph.popLast()
       commitGraph = commitGraph.reversed()
-      
-      var commitStreak = 0
       
       for day in commitGraph {
         if day != 0 {
@@ -41,8 +41,7 @@ class NetworkHelper {
           break
         }
       }
-      
-      print(commitStreak)
     }
+    return commitStreak
   }
 }

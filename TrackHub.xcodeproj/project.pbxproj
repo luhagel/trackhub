@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D69120325335E3CC43D99DF /* Pods_TrackHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E9A46F4C8A33330A05B1D5 /* Pods_TrackHub.framework */; };
+		3F0747F91DD99347007AA08E /* BarChartBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0747F81DD99347007AA08E /* BarChartBarView.swift */; };
+		3F0747FB1DD9935B007AA08E /* BarChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0747FA1DD9935B007AA08E /* BarChartTableViewCell.swift */; };
 		3F5D72261DD1237C001444FE /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5D72251DD1237C001444FE /* NetworkHelper.swift */; };
 		3F764B221DCB09A500CA70EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F764B211DCB09A500CA70EF /* AppDelegate.swift */; };
 		3F764B291DCB09A500CA70EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F764B281DCB09A500CA70EF /* Assets.xcassets */; };
@@ -30,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		1370199CD41B514554F02334 /* Pods_TrackHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F0747F81DD99347007AA08E /* BarChartBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartBarView.swift; sourceTree = "<group>"; };
+		3F0747FA1DD9935B007AA08E /* BarChartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartTableViewCell.swift; sourceTree = "<group>"; };
 		3F5D72251DD1237C001444FE /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		3F764B1E1DCB09A500CA70EF /* TrackHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F764B211DCB09A500CA70EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 		3F764B431DCB09F300CA70EF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3F0747F81DD99347007AA08E /* BarChartBarView.swift */,
+				3F0747FA1DD9935B007AA08E /* BarChartTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -370,6 +376,8 @@
 				3F764B481DCB0B5300CA70EF /* StreakRankingTableViewController.swift in Sources */,
 				3F5D72261DD1237C001444FE /* NetworkHelper.swift in Sources */,
 				3F764B221DCB09A500CA70EF /* AppDelegate.swift in Sources */,
+				3F0747FB1DD9935B007AA08E /* BarChartTableViewCell.swift in Sources */,
+				3F0747F91DD99347007AA08E /* BarChartBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +516,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.luhagel.TrackHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -523,6 +532,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.luhagel.TrackHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
