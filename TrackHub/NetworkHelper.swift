@@ -12,7 +12,7 @@ import Kanna
 
 class NetworkHelper {
   static func callGithubProfile() {
-    Alamofire.request("http://github.com/luhagel").responseString { response in
+    Alamofire.request("https://github.com/luhagel").responseString { response in
       print("Success: \(response.result.isSuccess)")
       self.parseHTML(html: response.result.value!)
     }
@@ -21,14 +21,28 @@ class NetworkHelper {
   static func parseHTML(html: String) {
     if let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8) {
       
-      var daycounter = 0
+      var commitGraph: [Int] = []
       
       // Search for nodes by CSS
       for day in doc.css("rect[class^='day']") {
-        daycounter += 1
+        commitGraph += [Int(day["data-count"]!)!]
       }
       
-      print(daycounter)
+      commitGraph.popLast()
+      commitGraph.popLast()
+      commitGraph = commitGraph.reversed()
+      
+      var commitStreak = 0
+      
+      for day in commitGraph {
+        if day != 0 {
+          commitStreak += 1
+        } else {
+          break
+        }
+      }
+      
+      print(commitStreak)
     }
   }
 }
