@@ -72,13 +72,13 @@ class StreakRankingTableViewController: UITableViewController {
   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: "BarChartCell", for: indexPath) as! BarChartTableViewCell
-      let currentUser = streakData[indexPath.section]
-      let barFrame = CGRect(x: 5, y: 5, width: 200, height: 20)
       
       let insetView = UIView(frame: CGRect(x: 10, y: 0, width: cell.contentView.frame.width - 20, height: cell.contentView.frame.height))
       insetView.backgroundColor = UIColor(white: 1, alpha: 0.8)
       insetView.layer.cornerRadius = 5
       
+      let currentUser = streakData[indexPath.section]
+      let barFrame = CGRect(x: 5, y: 5, width: 10 + currentUser.streak * 10, height: 20)
       let greenBarColor = UIColor(red: 30/255, green: 104/255, blue: 35/255, alpha: 0.9)
       insetView.addSubview(BarChartBarView(frame: barFrame, color: greenBarColor, username: currentUser.name, commits: currentUser.streak))
       
