@@ -10,13 +10,16 @@ import UIKit
 
 class StreakRankingTableViewController: UITableViewController {
   
-    let usernames = [
-      "luhagel",
-      "jakezeal",
-      "fanisakim",
-      "ajbraus",
-      "davidkc0"
-    ]
+  var usernames: [String] = [] {
+    didSet {
+      getStreakData(names: usernames, completion: { streakData in
+        self.streakData = streakData.sorted {$0.streak > $1.streak}
+        self.tableView.reloadData()
+      })
+    }
+  }
+  
+    let settings = UserDefaults.standard
   
     var streakData: [(name: String, streak: Int)] = []
 
@@ -27,11 +30,10 @@ class StreakRankingTableViewController: UITableViewController {
       let backgroundView = UIImageView(image: backgroundImage)
       self.tableView.backgroundView = backgroundView
       self.tableView.backgroundView?.contentMode = .scaleAspectFill
-
-      getStreakData(names: usernames, completion: { streakData in
-        self.streakData = streakData.sorted {$0.streak > $1.streak}
-        self.tableView.reloadData()
-      })
+    }
+  
+    override func viewDidAppear(_ animated: Bool) {
+      usernames = settings.array(forKey: "UserPrefs") as! [String]
     }
   
     // MARK: Data Aquisition
@@ -51,7 +53,6 @@ class StreakRankingTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-      // #warning Incomplete implementation, return the number of sections
       return self.streakData.count
     }
   
@@ -59,7 +60,6 @@ class StreakRankingTableViewController: UITableViewController {
       return 10
     }
   
-    // Make the background color show through
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
       let headerView = UIView()
       headerView.backgroundColor = UIColor.clear
@@ -78,7 +78,12 @@ class StreakRankingTableViewController: UITableViewController {
       insetView.layer.cornerRadius = 5
       
       let currentUser = streakData[indexPath.section]
-      let barFrame = CGRect(x: 5, y: 5, width: 10 + currentUser.streak * 10, height: 20)
+      let nameLabel = UILabel(frame: CGRect(x: 5, y: 3, width: 100, height: 25))
+      nameLabel.text = currentUser.name
+      nameLabel.sizeToFit()
+      insetView.addSubview(nameLabel)
+      
+      let barFrame = CGRect(x: 5, y: 28, width: 10 + currentUser.streak * 10, height: 20)
       let greenBarColor = UIColor(red: 30/255, green: 104/255, blue: 35/255, alpha: 0.9)
       insetView.addSubview(BarChartBarView(frame: barFrame, color: greenBarColor, username: currentUser.name, commits: currentUser.streak))
       

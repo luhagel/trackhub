@@ -13,16 +13,16 @@
         <scene sceneID="FaA-Ep-ZHR">
             <objects>
                 <tableViewController id="bxa-K2-lQX" customClass="StreakRankingTableViewController" customModule="TrackHub" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="09d-4O-V3H">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" id="09d-4O-V3H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BarChartCell" id="Gjy-mH-IOC" customClass="BarChartTableViewCell" customModule="TrackHub" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BarChartCell" rowHeight="56" id="Gjy-mH-IOC" customClass="BarChartTableViewCell" customModule="TrackHub" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gjy-mH-IOC" id="64p-PD-asG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </tableViewCellContentView>
@@ -35,11 +35,26 @@
                             <outlet property="delegate" destination="bxa-K2-lQX" id="iT0-oJ-HIB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Current Streaks" id="Yxn-gW-NXC"/>
+                    <navigationItem key="navigationItem" title="Current Streaks" id="Yxn-gW-NXC">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="DMe-VD-hvd">
+                            <color key="tintColor" red="0.1176470588" green="0.40784313729999999" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="WAv-02-29w" kind="show" id="pjH-Xx-UuV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3uI-7l-hkI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1031.2" y="220.83958020989508"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="qqa-eL-xQv">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="WAv-02-29w" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fxe-Ay-rWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1698" y="-40"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jcq-1b-t2m">
@@ -49,6 +64,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mgf-Gk-iKh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.1176470588" green="0.40784313729999999" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

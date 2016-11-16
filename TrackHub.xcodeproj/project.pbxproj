@@ -10,6 +10,9 @@
 		0D69120325335E3CC43D99DF /* Pods_TrackHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E9A46F4C8A33330A05B1D5 /* Pods_TrackHub.framework */; };
 		3F0747F91DD99347007AA08E /* BarChartBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0747F81DD99347007AA08E /* BarChartBarView.swift */; };
 		3F0747FB1DD9935B007AA08E /* BarChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0747FA1DD9935B007AA08E /* BarChartTableViewCell.swift */; };
+		3F4991041DD9BE1200B41115 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4991031DD9BE1200B41115 /* Settings.storyboard */; };
+		3F4991061DD9C3B200B41115 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4991051DD9C3B200B41115 /* SettingsTableViewController.swift */; };
+		3F4991091DD9C48800B41115 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4991081DD9C48800B41115 /* NavigationController.swift */; };
 		3F5D72261DD1237C001444FE /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5D72251DD1237C001444FE /* NetworkHelper.swift */; };
 		3F764B221DCB09A500CA70EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F764B211DCB09A500CA70EF /* AppDelegate.swift */; };
 		3F764B291DCB09A500CA70EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F764B281DCB09A500CA70EF /* Assets.xcassets */; };
@@ -17,6 +20,7 @@
 		3F764B371DCB09A500CA70EF /* TrackHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F764B361DCB09A500CA70EF /* TrackHubTests.swift */; };
 		3F764B461DCB0A8B00CA70EF /* StreakRanking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F764B451DCB0A8B00CA70EF /* StreakRanking.storyboard */; };
 		3F764B481DCB0B5300CA70EF /* StreakRankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F764B471DCB0B5300CA70EF /* StreakRankingTableViewController.swift */; };
+		3FCFB8511DD9DE61009B3631 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCFB8501DD9DE61009B3631 /* SettingsTableViewCell.swift */; };
 		4045C37AD007B1A6E23101AC /* Pods_TrackHubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1370199CD41B514554F02334 /* Pods_TrackHubTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +38,9 @@
 		1370199CD41B514554F02334 /* Pods_TrackHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F0747F81DD99347007AA08E /* BarChartBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartBarView.swift; sourceTree = "<group>"; };
 		3F0747FA1DD9935B007AA08E /* BarChartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartTableViewCell.swift; sourceTree = "<group>"; };
+		3F4991031DD9BE1200B41115 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		3F4991051DD9C3B200B41115 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		3F4991081DD9C48800B41115 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		3F5D72251DD1237C001444FE /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		3F764B1E1DCB09A500CA70EF /* TrackHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F764B211DCB09A500CA70EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +52,7 @@
 		3F764B381DCB09A500CA70EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F764B451DCB0A8B00CA70EF /* StreakRanking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StreakRanking.storyboard; sourceTree = "<group>"; };
 		3F764B471DCB0B5300CA70EF /* StreakRankingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreakRankingTableViewController.swift; sourceTree = "<group>"; };
+		3FCFB8501DD9DE61009B3631 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		67A01CFAC7111B7C6D7B4579 /* Pods-TrackHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackHub/Pods-TrackHub.debug.xcconfig"; sourceTree = "<group>"; };
 		7C96677D0479FA97319C9585 /* Pods-TrackHubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackHubTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackHubTests/Pods-TrackHubTests.release.xcconfig"; sourceTree = "<group>"; };
 		89F5E1AB85507B975B05A809 /* Pods-TrackHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackHub/Pods-TrackHub.release.xcconfig"; sourceTree = "<group>"; };
@@ -81,6 +89,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3F4991071DD9C46200B41115 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				3F4991081DD9C48800B41115 /* NavigationController.swift */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
 		3F764B151DCB09A500CA70EF = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +120,7 @@
 		3F764B201DCB09A500CA70EF /* TrackHub */ = {
 			isa = PBXGroup;
 			children = (
+				3F4991071DD9C46200B41115 /* Navigation */,
 				3F764B441DCB09F800CA70EF /* Helper */,
 				3F764B431DCB09F300CA70EF /* View */,
 				3F764B421DCB09E800CA70EF /* Storyboard */,
@@ -125,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				3F764B471DCB0B5300CA70EF /* StreakRankingTableViewController.swift */,
+				3F4991051DD9C3B200B41115 /* SettingsTableViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -134,6 +152,7 @@
 			children = (
 				3F764B2A1DCB09A500CA70EF /* LaunchScreen.storyboard */,
 				3F764B451DCB0A8B00CA70EF /* StreakRanking.storyboard */,
+				3F4991031DD9BE1200B41115 /* Settings.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -143,6 +162,7 @@
 			children = (
 				3F0747F81DD99347007AA08E /* BarChartBarView.swift */,
 				3F0747FA1DD9935B007AA08E /* BarChartTableViewCell.swift */,
+				3FCFB8501DD9DE61009B3631 /* SettingsTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -263,6 +283,7 @@
 				3F764B2C1DCB09A500CA70EF /* LaunchScreen.storyboard in Resources */,
 				3F764B461DCB0A8B00CA70EF /* StreakRanking.storyboard in Resources */,
 				3F764B291DCB09A500CA70EF /* Assets.xcassets in Resources */,
+				3F4991041DD9BE1200B41115 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,8 +396,11 @@
 			files = (
 				3F764B481DCB0B5300CA70EF /* StreakRankingTableViewController.swift in Sources */,
 				3F5D72261DD1237C001444FE /* NetworkHelper.swift in Sources */,
+				3FCFB8511DD9DE61009B3631 /* SettingsTableViewCell.swift in Sources */,
+				3F4991061DD9C3B200B41115 /* SettingsTableViewController.swift in Sources */,
 				3F764B221DCB09A500CA70EF /* AppDelegate.swift in Sources */,
 				3F0747FB1DD9935B007AA08E /* BarChartTableViewCell.swift in Sources */,
+				3F4991091DD9C48800B41115 /* NavigationController.swift in Sources */,
 				3F0747F91DD99347007AA08E /* BarChartBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -31,7 +31,6 @@ class NetworkHelper {
       
       commitGraph.popLast()
       commitGraph.popLast()
-      commitGraph.popLast()
       commitGraph = commitGraph.reversed()
       
       for day in commitGraph {

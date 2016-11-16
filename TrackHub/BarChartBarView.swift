@@ -14,7 +14,8 @@ class BarChartBarView: UIView {
     super.init(frame: frame)
     self.backgroundColor = color
     let nameLabel = UILabel(frame: CGRect(x: 5, y: 0, width: 200, height: 18))
-    nameLabel.text = "\(username) - \(commits)"
+    nameLabel.text = "-> \(commits)"
+    nameLabel.textColor = .white
     nameLabel.sizeToFit()
     self.addSubview(nameLabel)
     self.layer.cornerRadius = 2
