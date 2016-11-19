@@ -21,4 +21,12 @@ class BarChartTableViewCell: UITableViewCell {
     // Configure the view for the selected state
   }
   
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    
+    let chartviews = self.contentView.subviews
+    for chart in chartviews {
+        chart.removeFromSuperview()
+    }
+  }
 }
