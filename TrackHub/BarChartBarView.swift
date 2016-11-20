@@ -10,15 +10,10 @@ import UIKit
 
 class BarChartBarView: UIView {
   
-  init(frame: CGRect, color: UIColor, username: String, commits: Int) {
+  init(frame: CGRect, color: UIColor) {
     super.init(frame: frame)
     self.backgroundColor = color
-    let nameLabel = UILabel(frame: CGRect(x: 5, y: 0, width: 200, height: 18))
-    nameLabel.text = "-> \(commits)"
-    nameLabel.textColor = .white
-    nameLabel.sizeToFit()
-    self.addSubview(nameLabel)
-    self.layer.cornerRadius = 2
+    self.layer.cornerRadius = 10
   }
   
   required init?(coder aDecoder: NSCoder) {
