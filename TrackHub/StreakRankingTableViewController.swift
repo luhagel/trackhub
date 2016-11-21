@@ -10,43 +10,51 @@ import UIKit
 
 class StreakRankingTableViewController: UITableViewController {
   
+  let settings = UserDefaults.standard
+  
   var usernames: [String] = [] {
     didSet {
       getStreakData(names: usernames, completion: { streakData in
         self.streakData = streakData.sorted {$0.streak > $1.streak}
-        
-        self.tableView.reloadData()
       })
     }
   }
   
-    let settings = UserDefaults.standard
+  var streakData: [(name: String, streak: Int)] = [] {
+    didSet {
+      highscoreList = []
+      var biggestStreak = 0
+      for tracked in streakData {
+        var barWidth: Float = 0.0
+        if tracked.name == streakData[0].name {
+          barWidth = 1.0
+          biggestStreak = tracked.streak
+        } else if tracked.streak > 0 {
+          barWidth = Float(tracked.streak) / Float(biggestStreak)
+        }
+        highscoreList += [(name: tracked.name, streak: tracked.streak, barWidth: barWidth)]
+      }
+      self.tableView.reloadData()
+    }
+  }
   
-  var streakData: [(name: String, streak: Int, barWidth: Float)] = []
+  var highscoreList: [(name: String, streak: Int, barWidth: Float)] = []
 
-    override func viewDidLoad() {
-      super.viewDidLoad()
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    usernames = settings.array(forKey: "UserPrefs") as! [String]
+  }
+
+  // MARK: Data Aquisition
   
-    override func viewDidAppear(_ animated: Bool) {
-      usernames = settings.array(forKey: "UserPrefs") as! [String]
-    }
-  
-    // MARK: Data Aquisition
-  
-  func getStreakData(names: [String], completion: @escaping ([(name: String, streak: Int, barWidth: Float)]) -> Void) {
-    var streakData: [(name: String, streak: Int, barWidth: Float)] = []
-    var biggestStreak: Int = 0
+  func getStreakData(names: [String], completion: @escaping ([(name: String, streak: Int)]) -> Void) {
+    var streakData: [(name: String, streak: Int)] = []
       for name in names {
         NetworkHelper.getCurrentStreakFor(username: name, completion: { (currentStreak: Int) in
-          var barWidth: Float = 0.0
-          if name == names[0] {
-            barWidth = 1.0
-            biggestStreak = currentStreak
-          } else if currentStreak > 0 {
-            barWidth = Float(currentStreak) / Float(biggestStreak)
-          }
-          streakData += [(name: name, streak: currentStreak, barWidth: barWidth)]
+          streakData += [(name: name, streak: currentStreak)]
           if streakData.count == names.count {
             completion(streakData)
           }
@@ -57,7 +65,7 @@ class StreakRankingTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-      return self.streakData.count
+      return self.highscoreList.count
     }
   
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -77,7 +85,7 @@ class StreakRankingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: "BarChartCell", for: indexPath) as! BarChartTableViewCell
       
-      let currentUser = streakData[indexPath.section]
+      let currentUser = highscoreList[indexPath.section]
       
       self.setupStreakCellInsetView(cell: cell, username: currentUser.name, barWidth: currentUser.barWidth, commits: currentUser.streak)
       return cell
