@@ -93,7 +93,7 @@ class StreakRankingTableViewController: UITableViewController {
   
   fileprivate func setupStreakCellInsetView(cell: UITableViewCell, username: String, barWidth: Float, commits: Int) -> Void {
     let insetView = UIView(frame: CGRect(x: 10, y: 0, width: cell.contentView.frame.width - 20, height: cell.contentView.frame.height))
-    insetView.backgroundColor = UIColor(white: 1, alpha: 0.4)
+    insetView.backgroundColor = UIColor(white: 1, alpha: 0.7)
     insetView.layer.borderWidth = 2
     insetView.layer.borderColor = UIColor.lightGray.cgColor
     insetView.layer.cornerRadius = 10

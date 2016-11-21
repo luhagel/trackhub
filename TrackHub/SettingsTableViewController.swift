@@ -20,11 +20,6 @@ class SettingsTableViewController: UITableViewController {
       super.viewDidLoad()
       
       usernames = settings.array(forKey: "UserPrefs") as! [String]
-
-      let backgroundImage = UIImage(named: "tracker_bg")
-      let backgroundView = UIImageView(image: backgroundImage)
-      self.tableView.backgroundView = backgroundView
-      self.tableView.backgroundView?.contentMode = .scaleAspectFill
       
       self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.showNewUserAlertController))
     }

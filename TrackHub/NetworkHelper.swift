@@ -13,7 +13,6 @@ import Kanna
 class NetworkHelper {
   static func getCurrentStreakFor(username: String, completion: @escaping (Int) -> Void) {
     Alamofire.request("https://github.com/\(username)").responseString { response in
-      print("Success: \(response.result.isSuccess)")
       completion(self.parseHTML(html: response.result.value!))    }
   }
   
