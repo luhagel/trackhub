@@ -13,7 +13,7 @@ class BarChartBarView: UIView {
   init(frame: CGRect, color: UIColor) {
     super.init(frame: frame)
     self.backgroundColor = color
-    self.layer.cornerRadius = 10
+    self.layer.cornerRadius = 15
   }
   
   required init?(coder aDecoder: NSCoder) {

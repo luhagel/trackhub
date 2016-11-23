@@ -91,15 +91,17 @@ class StreakRankingTableViewController: UITableViewController {
       return cell
     }
   
+  
+  
   fileprivate func setupStreakCellInsetView(cell: UITableViewCell, username: String, barWidth: Float, commits: Int) -> Void {
-    let insetView = UIView(frame: CGRect(x: 10, y: 0, width: cell.contentView.frame.width - 20, height: cell.contentView.frame.height))
+    let insetView = UIView(frame: CGRect(x: 10, y: 0, width: self.tableView.frame.size.width - 20, height: cell.contentView.frame.height))
     insetView.backgroundColor = UIColor(white: 1, alpha: 0.7)
-    insetView.layer.borderWidth = 2
+    insetView.layer.borderWidth = 1
     insetView.layer.borderColor = UIColor.lightGray.cgColor
-    insetView.layer.cornerRadius = 10
+    insetView.layer.cornerRadius = 15
     
     let barFrame = CGRect(x: 0, y: 0, width: Int(insetView.frame.width * CGFloat(barWidth)), height: Int(insetView.frame.height))
-    let greenBarColor = UIColor(red: 164/255, green: 196/255, blue: 0/255, alpha: 0.7)
+    let greenBarColor = UIColor(red: 164/255, green: 196/255, blue: 0/255, alpha: 0.4)
     insetView.addSubview(BarChartBarView(frame: barFrame, color: greenBarColor))
     
     let nameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 25))
