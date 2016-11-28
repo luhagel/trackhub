@@ -27,11 +27,22 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.usernames.count
     }
+  
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+      return 10
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+      let headerView = UIView()
+      headerView.backgroundColor = .clear
+      return headerView
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return usernames.count
+      return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,7 +56,7 @@ class SettingsTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action , indexPath) -> Void in
       
-      self.usernames.remove(at: indexPath.row)
+      self.usernames.remove(at: indexPath.section)
       self.settings.set(self.usernames, forKey: "UserPrefs")
       self.settings.synchronize()
       
