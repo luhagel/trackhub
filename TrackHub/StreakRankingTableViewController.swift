@@ -83,33 +83,25 @@ class StreakRankingTableViewController: UITableViewController {
       
       let currentUser = highscoreList[indexPath.section]
       
-      self.setupStreakCellInsetView(cell: cell, username: currentUser.name, barWidth: currentUser.barWidth, commits: currentUser.streak)
+      let barFrame = CGRect(x: 40, y: Int(cell.contentView.frame.height - 10), width: Int(cell.contentView.frame.width * CGFloat(currentUser.barWidth) - 40), height: 3)
+      cell.contentView.addSubview(BarChartBarView(frame: barFrame, color: .orange))
+      
+      let nameLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 100, height: 25))
+      nameLabel.font = UIFont(name: "Verdana", size: 16)
+      nameLabel.textColor = .white
+      nameLabel.text = currentUser.name
+      nameLabel.textAlignment = .left
+      nameLabel.sizeToFit()
+      cell.contentView.addSubview(nameLabel)
+      
+      let commitLabel = UILabel(frame: CGRect(x: 20, y: 0, width: cell.contentView.frame.width - 40, height: cell.contentView.frame.height))
+      commitLabel.text = String(currentUser.streak)
+      commitLabel.textAlignment = .right
+      commitLabel.font = UIFont(name: "Verdana", size: 32)
+      commitLabel.textColor = .lightGray
+      
+      cell.contentView.addSubview(commitLabel)
+      
       return cell
     }
-  
-  
-  
-  fileprivate func setupStreakCellInsetView(cell: UITableViewCell, username: String, barWidth: Float, commits: Int) -> Void {
-    let insetView = UIView(frame: CGRect(x: 10, y: 0, width: self.tableView.frame.size.width - 20, height: cell.contentView.frame.height))
-    
-    let barFrame = CGRect(x: 40, y: Int(cell.contentView.frame.height - 10), width: Int(insetView.frame.width * CGFloat(barWidth) - 40), height: 3)
-    insetView.addSubview(BarChartBarView(frame: barFrame, color: .orange))
-    
-    let nameLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 100, height: 25))
-    nameLabel.font = UIFont(name: "Verdana", size: 16)
-    nameLabel.textColor = .white
-    nameLabel.text = username
-    nameLabel.textAlignment = .left
-    nameLabel.sizeToFit()
-    insetView.addSubview(nameLabel)
-    
-    let commitLabel = UILabel(frame: CGRect(x: 20, y: 0, width: insetView.frame.width - 40, height: insetView.frame.height))
-    commitLabel.text = String(commits)
-    commitLabel.textAlignment = .right
-    commitLabel.font = UIFont(name: "Verdana", size: 32)
-    commitLabel.textColor = .lightGray
-    
-    insetView.addSubview(commitLabel)
-    cell.contentView.addSubview(insetView)
-  }
 }
