@@ -65,11 +65,7 @@ class StreakRankingTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-      return self.highscoreList.count
-    }
-  
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-      return 10
+      return 1
     }
   
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -79,7 +75,7 @@ class StreakRankingTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 1
+      return self.highscoreList.count
     }
   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,21 +91,16 @@ class StreakRankingTableViewController: UITableViewController {
   
   fileprivate func setupStreakCellInsetView(cell: UITableViewCell, username: String, barWidth: Float, commits: Int) -> Void {
     let insetView = UIView(frame: CGRect(x: 10, y: 0, width: self.tableView.frame.size.width - 20, height: cell.contentView.frame.height))
-    insetView.backgroundColor = UIColor(white: 1, alpha: 0.7)
-    insetView.layer.borderWidth = 1
-    insetView.layer.borderColor = UIColor.lightGray.cgColor
-    insetView.layer.cornerRadius = 15
     
-    let barFrame = CGRect(x: 0, y: 0, width: Int(insetView.frame.width * CGFloat(barWidth)), height: Int(insetView.frame.height))
-    let greenBarColor = UIColor(red: 164/255, green: 196/255, blue: 0/255, alpha: 0.4)
-    insetView.addSubview(BarChartBarView(frame: barFrame, color: greenBarColor))
+    let barFrame = CGRect(x: 40, y: Int(cell.contentView.frame.height - 10), width: Int(insetView.frame.width * CGFloat(barWidth) - 40), height: 3)
+    insetView.addSubview(BarChartBarView(frame: barFrame, color: .orange))
     
-    let nameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 25))
+    let nameLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 100, height: 25))
     nameLabel.font = UIFont(name: "Verdana", size: 16)
+    nameLabel.textColor = .white
     nameLabel.text = username
-    nameLabel.textAlignment = .center
+    nameLabel.textAlignment = .left
     nameLabel.sizeToFit()
-    nameLabel.center = insetView.convert(insetView.center, to: nameLabel)
     insetView.addSubview(nameLabel)
     
     let commitLabel = UILabel(frame: CGRect(x: 20, y: 0, width: insetView.frame.width - 40, height: insetView.frame.height))
