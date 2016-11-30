@@ -6,6 +6,7 @@ target 'TrackHub' do
   use_frameworks!
 
   pod 'Alamofire'
+  pod 'AlamofireImage', '~> 3.1'
   pod 'Kanna'
 
   # Pods for TrackHub

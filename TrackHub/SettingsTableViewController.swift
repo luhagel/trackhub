@@ -49,7 +49,7 @@ class SettingsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsTableViewCell
 
         // Configure the cell...
-        cell.nameLabel.text = usernames[indexPath.row]
+        cell.nameLabel.text = usernames[indexPath.section]
         return cell
     }
   

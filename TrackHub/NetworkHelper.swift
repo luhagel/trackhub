@@ -13,10 +13,27 @@ import Kanna
 class NetworkHelper {
   static func getCurrentStreakFor(username: String, completion: @escaping (Int) -> Void) {
     Alamofire.request("https://github.com/\(username)").responseString { response in
-      completion(self.parseHTML(html: response.result.value!))    }
+      completion(self.parseStreakFromHTML(html: response.result.value!))    }
   }
   
-  static func parseHTML(html: String) -> Int {
+  static func getProfilePictureFor(username: String, completion: @escaping (String) -> Void) {
+    Alamofire.request("https://github.com/\(username)").responseString { response in
+      completion(self.parseProfilePictureURLFromHTML(html: response.result.value!))    }
+  }
+  
+  static func parseProfilePictureURLFromHTML(html: String) -> String {
+    var profilePictureURL = ""
+    if let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8) {
+      for picture in doc.css("img[class^='avatar width-full rounded-2']") {
+        if let url = picture["src"] {
+          profilePictureURL = String(url)
+        }
+      }
+    }
+    return profilePictureURL
+  }
+  
+  static func parseStreakFromHTML(html: String) -> Int {
     var commitStreak = 0
     
     if let doc = Kanna.HTML(html: html, encoding: String.Encoding.utf8) {

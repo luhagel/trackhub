@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class StreakRankingTableViewController: UITableViewController {
   
@@ -81,26 +82,39 @@ class StreakRankingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: "BarChartCell", for: indexPath) as! BarChartTableViewCell
       
-      let currentUser = highscoreList[indexPath.section]
+      let currentUser = highscoreList[indexPath.row]
       
-      let barFrame = CGRect(x: 40, y: Int(cell.contentView.frame.height - 10), width: Int(cell.contentView.frame.width * CGFloat(currentUser.barWidth) - 40), height: 3)
+      let barFrame = CGRect(x: 80, y: Int(cell.contentView.frame.height - 12), width: Int((cell.contentView.frame.width - 100) * CGFloat(currentUser.barWidth)), height: 4)
       cell.contentView.addSubview(BarChartBarView(frame: barFrame, color: .orange))
       
-      let nameLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 100, height: 25))
-      nameLabel.font = UIFont(name: "Verdana", size: 16)
+      let nameLabel = UILabel(frame: CGRect(x: 80, y: 8, width: 100, height: 25))
+      nameLabel.font = UIFont(name: "Verdana", size: 18)
       nameLabel.textColor = .white
       nameLabel.text = currentUser.name
       nameLabel.textAlignment = .left
       nameLabel.sizeToFit()
       cell.contentView.addSubview(nameLabel)
       
-      let commitLabel = UILabel(frame: CGRect(x: 20, y: 0, width: cell.contentView.frame.width - 40, height: cell.contentView.frame.height))
+      let commitLabel = UILabel(frame: CGRect(x: 20, y: 8, width: cell.contentView.frame.width - 40, height: 32))
       commitLabel.text = String(currentUser.streak)
       commitLabel.textAlignment = .right
       commitLabel.font = UIFont(name: "Verdana", size: 32)
       commitLabel.textColor = .lightGray
       
       cell.contentView.addSubview(commitLabel)
+      
+      let profileImageView = UIImageView(frame: CGRect(x: 10, y: 8, width: 40, height: 40))
+      NetworkHelper.getProfilePictureFor(username: currentUser.name, completion: { url in
+        if url != "" {
+          profileImageView.af_setImage(withURL: URL(string: url)!)
+        }
+      })
+      profileImageView.layer.cornerRadius = 20
+      profileImageView.layer.borderWidth = 1
+      profileImageView.layer.borderColor = UIColor.orange.cgColor
+      profileImageView.clipsToBounds = true
+      
+      cell.contentView.addSubview(profileImageView)
       
       return cell
     }
