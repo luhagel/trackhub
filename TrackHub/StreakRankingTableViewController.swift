@@ -13,6 +13,9 @@ class StreakRankingTableViewController: UITableViewController {
   
   let settings = UserDefaults.standard
   
+  let downloader = ImageDownloader()
+  var imageCache: [String: UIImage] = [:]
+  
   var usernames: [String] = [] {
     didSet {
       getStreakData(names: usernames, completion: { streakData in
@@ -103,18 +106,28 @@ class StreakRankingTableViewController: UITableViewController {
       
       cell.contentView.addSubview(commitLabel)
       
-      let profileImageView = UIImageView(frame: CGRect(x: 10, y: 8, width: 40, height: 40))
       NetworkHelper.getProfilePictureFor(username: currentUser.name, completion: { url in
         if url != "" {
-          profileImageView.af_setImage(withURL: URL(string: url)!)
+          let urlRequest = URLRequest(url: URL(string: url)!)
+          
+          self.downloader.download(urlRequest) { response in
+            if let image = response.result.value {
+              self.imageCache[currentUser.name] = image
+              if let cellToUpdate = tableView.cellForRow(at: indexPath) as? BarChartTableViewCell {
+                if cellToUpdate.imageView?.image == nil
+                {
+                  cellToUpdate.profileImageView?.image = image // will work fine even if image is nil
+                  cellToUpdate.setNeedsLayout() // need to reload the view, which won't happen otherwise since this is in an async call
+                }
+              }
+            }
+          }
         }
       })
-      profileImageView.layer.cornerRadius = 20
-      profileImageView.layer.borderWidth = 1
-      profileImageView.layer.borderColor = UIColor.orange.cgColor
-      profileImageView.clipsToBounds = true
-      
-      cell.contentView.addSubview(profileImageView)
+      cell.profileImageView.layer.cornerRadius = 20
+      cell.profileImageView.layer.borderWidth = 1
+      cell.profileImageView.layer.borderColor = UIColor.orange.cgColor
+      cell.profileImageView.clipsToBounds = true
       
       return cell
     }

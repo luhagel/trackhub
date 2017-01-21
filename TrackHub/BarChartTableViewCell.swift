@@ -10,6 +10,8 @@ import UIKit
 
 class BarChartTableViewCell: UITableViewCell {
   
+  @IBOutlet weak var profileImageView: UIImageView!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -24,7 +26,7 @@ class BarChartTableViewCell: UITableViewCell {
   override func prepareForReuse() {
     super.prepareForReuse()
     
-    let chartviews = self.contentView.subviews
+    let chartviews = self.contentView.subviews.filter{$0 is BarChartBarView}
     for chart in chartviews {
         chart.removeFromSuperview()
     }
