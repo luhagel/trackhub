@@ -47,9 +47,12 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsTableViewCell
+      
+        cell.backgroundColor = .clear
 
         // Configure the cell...
         cell.nameLabel.text = usernames[indexPath.section]
+        cell.nameLabel.textColor = .white
         return cell
     }
   
