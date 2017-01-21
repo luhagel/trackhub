@@ -118,16 +118,17 @@ class StreakRankingTableViewController: UITableViewController {
                 {
                   cellToUpdate.profileImageView?.image = image // will work fine even if image is nil
                   cellToUpdate.setNeedsLayout() // need to reload the view, which won't happen otherwise since this is in an async call
+                  
+                  cell.profileImageView.layer.cornerRadius = 20
+                  cell.profileImageView.layer.borderWidth = 1
+                  cell.profileImageView.layer.borderColor = UIColor.orange.cgColor
+                  cell.profileImageView.clipsToBounds = true
                 }
               }
             }
           }
         }
       })
-      cell.profileImageView.layer.cornerRadius = 20
-      cell.profileImageView.layer.borderWidth = 1
-      cell.profileImageView.layer.borderColor = UIColor.orange.cgColor
-      cell.profileImageView.clipsToBounds = true
       
       return cell
     }
