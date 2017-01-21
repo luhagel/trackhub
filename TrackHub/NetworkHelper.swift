@@ -45,8 +45,7 @@ class NetworkHelper {
         commitGraph += [Int(day["data-count"]!)!]
       }
       
-      commitGraph.popLast()
-      commitGraph.popLast()
+      commitGraph.removeLast()
       commitGraph = commitGraph.reversed()
       
       for day in commitGraph {
