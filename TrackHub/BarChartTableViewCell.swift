@@ -30,5 +30,9 @@ class BarChartTableViewCell: UITableViewCell {
     for chart in chartviews {
         chart.removeFromSuperview()
     }
+    let labels = self.contentView.subviews.filter{$0 is UILabel}
+    for label in labels {
+      label.removeFromSuperview()
+    }
   }
 }
