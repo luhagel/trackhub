@@ -20,6 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if defaults.array(forKey: "UserPrefs") == nil {
       defaults.set([String](), forKey: "UserPrefs")
     }
+    if !defaults.bool(forKey: "CleanedUsers") {
+      let usernames = defaults.array(forKey: "UserPrefs") as! [String]
+      var cleanedUserList: [String] = []
+      for username in usernames {
+        NetworkHelper.checkStatusCode(name: username) { status in
+          if status == 200 {
+            cleanedUserList += [username]
+          }
+        }
+      }
+      defaults.set(cleanedUserList, forKey: "UserPrefs")
+      defaults.set(true, forKey: "CleanedUsers")
+      print("cleaned userlist!!")
+    }
     
     return true
   }

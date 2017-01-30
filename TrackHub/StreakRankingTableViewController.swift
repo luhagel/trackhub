@@ -50,6 +50,12 @@ class StreakRankingTableViewController: UITableViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     usernames = settings.array(forKey: "UserPrefs") as! [String]
+    if usernames.isEmpty {
+      let noUsersAlert = UIAlertController(title: "No Users!", message: "Hey there, it looks likle you haven't added any of your friends yet! Let's start by tapping the \"Settings\" Button and adding one.", preferredStyle: UIAlertControllerStyle.alert)
+      noUsersAlert.addAction(UIAlertAction(title: "Let's go!", style: UIAlertActionStyle.default, handler: nil))
+      
+      self.present(noUsersAlert, animated: true, completion: nil)
+    }
   }
 
   // MARK: Data Aquisition
