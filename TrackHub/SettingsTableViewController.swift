@@ -80,11 +80,20 @@ class SettingsTableViewController: UITableViewController {
     
     let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
       if let field = alertController.textFields![0].text {
-        self.usernames += [field]
-        self.settings.set(self.usernames, forKey: "UserPrefs")
-        self.settings.synchronize()
-        
-        self.tableView.reloadData()
+        NetworkHelper.checkStatusCode(name: field) { status in
+          if status == 200 {
+            self.usernames += [field]
+            self.settings.set(self.usernames, forKey: "UserPrefs")
+            self.settings.synchronize()
+            
+            self.tableView.reloadData()
+          } else {
+            let errorAlert = UIAlertController(title: "User no found", message: "Maybe you have a typo?", preferredStyle: UIAlertControllerStyle.alert)
+            errorAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            self.present(errorAlert, animated: true, completion: nil)
+          }
+        }
       } else {
         // user did not fill field
       }

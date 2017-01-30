@@ -11,6 +11,12 @@ import Alamofire
 import Kanna
 
 class NetworkHelper {
+  static func checkStatusCode(name: String, completion: @escaping (Int) -> Void) {
+    Alamofire.request("https://github.com/\(name)")
+      .responseString { response in
+        completion((response.response?.statusCode)!)
+    }
+  }
   static func getCurrentStreakFor(username: String, completion: @escaping (Int) -> Void) {
     Alamofire.request("https://github.com/\(username)").responseString { response in
       completion(self.parseStreakFromHTML(html: response.result.value!))    }
